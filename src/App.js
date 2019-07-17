@@ -13,22 +13,24 @@ const initialValues = {
 };
 
 const App = () => (
-  <div className="w-screen h-screen bg-grey-light px-10 py-20">
+  <div className="bg-blue-400 px-10 py-10">
     <div
       className="m-auto bg-white rounded px-10 py-10 shadow-lg"
       style={{ width: 600 }}
     >
-      <h1 className="text-4xl font-bold mb-5">Invite friends</h1>
+      <h1 className="text-4xl font-bold mb-5 text-center text-orange-400">INVITE FRIENDS</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={Yup.object({
           friends: Yup.array()
             .of(
               Yup.object({
-                name: Yup.string().required("Required"),
+                name: Yup.string()
+                  .min(5, "Username too short")
+                  .required("Required"),
                 email: Yup.string()
                   .email("Invalid email")
-                  .required("Required")
+                  .required("Please choose a password")
               })
             )
             .min(3, "Must invite at least three friends")
@@ -107,7 +109,7 @@ const App = () => (
                 Invite
               </button>
 
-              <div className="p-2 text-red-dark text-center">
+              <div className="p-2 text-center text-red-400">
                 {typeof errors.friends === "string" ? errors.friends : null}
               </div>
               <Debug />
