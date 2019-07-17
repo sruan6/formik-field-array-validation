@@ -6,7 +6,7 @@ import { Debug } from "./Debug";
 const initialValues = {
   friends: [
     {
-      name: "",
+      username: "",
       email: ""
     }
   ]
@@ -25,7 +25,7 @@ const App = () => (
           friends: Yup.array()
             .of(
               Yup.object({
-                name: Yup.string()
+                username: Yup.string()
                   .min(5, "Username too short")
                   .required("Required"),
                 email: Yup.string()
@@ -54,12 +54,12 @@ const App = () => (
                         <div key={index} className="flex mb-3">
                           <div className="flex-1 flex flex-col">
                             <Field
-                              name={`friends[${index}].name`}
+                              name={`friends[${index}].username`}
                               type="text"
-                              placeholder="Jane Doe"
+                              placeholder="Username"
                               className="px-2 py-3 mr-3 border-solid border-grey-light border-2 rounded"
                             />
-                            <ErrorMessage name={`friends[${index}].name`}>
+                            <ErrorMessage name={`friends[${index}].username`}>
                               {msg => (
                                 <div className="p-2 text-red-dark">{msg}</div>
                               )}
@@ -91,7 +91,7 @@ const App = () => (
 
                     <button
                       type="button"
-                      onClick={() => push({ name: "", email: "" })}
+                      onClick={() => push({ username: "", email: "" })}
                       className="w-full p-3 mb-3 text-xl uppercase font-bold shadow-md rounded bg-green-400"
                     >
                       Add Friend
